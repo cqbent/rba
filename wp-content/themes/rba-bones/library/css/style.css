@@ -1,0 +1,1944 @@
+/*! Made with Bones: http://themble.com/bones :) */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+/* normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent; }
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+  outline: thin dotted; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong,
+.strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn,
+em,
+.em {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/*
+ * proper formatting (http://blog.fontdeck.com/post/9037028497/hyphens)
+*/
+p {
+  -webkit-hyphens: auto;
+  -epub-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto; }
+
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+pre {
+  margin: 0; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+small, .small {
+  font-size: 75%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+  Lists
+========================================================================== */
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0; }
+
+dd {
+  margin: 0; }
+
+/*
+ * Addresses paddings set differently in IE6/7.
+ */
+menu {
+  padding: 0 0 0 40px; }
+
+ol,
+ul {
+  padding: 0;
+  list-style-type: none; }
+
+/*
+ * Corrects list images handled incorrectly in IE7.
+ */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none; }
+
+/* ==========================================================================
+  Embedded content
+========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.image-replacement,
+.ir {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.clearfix, .cf {
+  zoom: 1; }
+  .clearfix:before, .clearfix:after, .cf:before, .cf:after {
+    content: "";
+    display: table; }
+  .clearfix:after, .cf:after {
+    clear: both; }
+
+/*
+use the best ampersand
+http://simplebits.com/notebook/2008/08/14/ampersands-2/
+*/
+span.amp {
+  font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
+  font-style: italic; }
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+/*  @font-face {
+      font-family: 'Font Name';
+      src: url('library/fonts/font-name.eot');
+      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
+             url('library/fonts/font-name.woff') format('woff'),
+             url('library/fonts/font-name.ttf') format('truetype'),
+             url('library/fonts/font-name.svg#font-name') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+*/
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+/*
+ i imported this one in the functions file so bones would look sweet.
+ don't forget to remove it for your site.
+*/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+p {
+  -ms-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig"; }
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Sass Functions
+
+You can do a lot of really cool things in Sass. Functions help you
+make repeated actions a lot easier. They are really similar to mixins,
+but can be used for so much more.
+
+Anyway, keep them all in here so it's easier to find when you're
+looking for one.
+
+For more info on functions, go here:
+http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+******************************************************************/
+/*********************
+COLOR FUNCTIONS
+These are helpful when you're working
+with shadows and such things. It's essentially
+a quicker way to write RGBA.
+
+Example:
+box-shadow: 0 0 4px black(0.3);
+compiles to:
+box-shadow: 0 0 4px rgba(0,0,0,0.3);
+*********************/
+/*********************
+RESPONSIVE HELPER FUNCTION
+If you're creating a responsive site, then
+you've probably already read
+Responsive Web Design: http://www.abookapart.com/products/responsive-web-design
+
+Here's a nice little helper function for calculating
+target / context
+as mentioned in that book.
+
+Example:
+width: cp(650px, 1000px);
+or
+width: calc-percent(650px, 1000px);
+both compile to:
+width: 65%;
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins Stylesheet
+
+This is where you can take advantage of Sass' great features: Mixins.
+I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/*
+I totally rewrote this to be cleaner and easier to use.
+You'll need to be using Sass 3.2+ for these to work.
+Thanks to @anthonyshort for the inspiration on these.
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+/*********************
+CSS3 GRADIENTS
+Be careful with these since they can
+really slow down your CSS. Don't overdo it.
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/* NOTE: value of "padding-box" is only supported in Gecko. So
+probably best not to use it. I mean, were you going to anyway? */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Grid Stylesheet
+
+I've seperated the grid so you can swap it out easily. It's
+called at the top the style.scss stylesheet.
+
+There are a ton of grid solutions out there. You should definitely
+experiment with your own. Here are some recommendations:
+
+http://gridsetapp.com - Love this site. Responsive Grids made easy.
+http://susy.oddbird.net/ - Grids using Compass. Very elegant.
+http://gridpak.com/ - Create your own responsive grid.
+https://github.com/dope/lemonade - Neat lightweight grid.
+
+
+The grid below is a custom built thingy I modeled a bit after
+Gridset. It's VERY basic and probably shouldn't be used on
+your client projects. The idea is you learn how to roll your
+own grids. It's better in the long run and allows you full control
+over your project's layout.
+
+******************************************************************/
+.last-col {
+  float: right;
+  padding-right: 0 !important; }
+
+/*
+Mobile Grid Styles
+These are the widths for the mobile grid.
+There are four types, but you can add or customize
+them however you see fit.
+*/
+@media (max-width: 767px) {
+  .m-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0; }
+
+  .m-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%; }
+
+  .m-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%; }
+
+  .m-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%; }
+
+  .m-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%; }
+
+  .m-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%; } }
+/* Portrait tablet to landscape */
+@media (min-width: 768px) and (max-width: 1029px) {
+  .t-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0; }
+
+  .t-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%; }
+
+  .t-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%; }
+
+  .t-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%; }
+
+  .t-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%; }
+
+  .t-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%; }
+
+  .t-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%; }
+
+  .t-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%; }
+
+  .t-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%; }
+
+  .t-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%; } }
+/* Landscape to small desktop */
+@media (min-width: 1030px) {
+  .d-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0; }
+
+  .d-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%; }
+
+  .d-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%; }
+
+  .d-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%; }
+
+  .d-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%; }
+
+  .d-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%; }
+
+  .d-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%; }
+
+  .d-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%; }
+
+  .d-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%; }
+
+  .d-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%; }
+
+  .d-1of6 {
+    float: left;
+    padding-right: 0.75em;
+    width: 16.6666666667%; }
+
+  .d-1of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 14.2857142857%; }
+
+  .d-2of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 28.5714286%; }
+
+  .d-3of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 42.8571429%; }
+
+  .d-4of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 57.1428572%; }
+
+  .d-5of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 71.4285715%; }
+
+  .d-6of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 85.7142857%; }
+
+  .d-1of8 {
+    float: left;
+    padding-right: 0.75em;
+    width: 12.5%; }
+
+  .d-1of9 {
+    float: left;
+    padding-right: 0.75em;
+    width: 11.1111111111%; }
+
+  .d-1of10 {
+    float: left;
+    padding-right: 0.75em;
+    width: 10%; }
+
+  .d-1of11 {
+    float: left;
+    padding-right: 0.75em;
+    width: 9.09090909091%; }
+
+  .d-1of12 {
+    float: left;
+    padding-right: 0.75em;
+    width: 8.33%; } }
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+button,
+input[type="submit"] {
+  border: 1px solid #b16413;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #e1ad76;
+  color: white;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: bold;
+  background-color: #dd882e;
+  background-image: -webkit-linear-gradient(#dd882e, #bf6c14);
+  background-image: linear-gradient(#dd882e, #bf6c14);
+  padding: 7px 18px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #a45a0b;
+  background-clip: padding-box;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.9375em;
+  font-weight: bold;
+  line-height: 1em; }
+  button:hover:not(:disabled),
+  input[type="submit"]:hover:not(:disabled) {
+    background-color: #cb7b27;
+    background-image: -webkit-linear-gradient(#cb7b27, #b06414);
+    background-image: linear-gradient(#cb7b27, #b06414);
+    box-shadow: inset 0 1px 0 0 #d9944c;
+    cursor: pointer; }
+  button:active:not(:disabled),
+  input[type="submit"]:active:not(:disabled), button:focus:not(:disabled),
+  input[type="submit"]:focus:not(:disabled) {
+    border: 1px solid #b16413;
+    box-shadow: inset 0 0 8px 4px #a15c13, inset 0 0 8px 4px #a15c13; }
+  button:disabled,
+  input[type="submit"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5; }
+
+body {
+  color: #58585a;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9375em;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.40625em; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.25em;
+  margin: 0;
+  text-rendering: optimizeLegibility; }
+
+h1 {
+  font-size: 3.28125em; }
+
+h2 {
+  font-size: 1.875em; }
+
+h3 {
+  font-size: 1.64063em; }
+
+h4 {
+  font-size: 1.40625em; }
+
+h5 {
+  font-size: 1.17188em; }
+
+h6 {
+  font-size: 0.9375em; }
+
+p {
+  margin: 0 0 0.70313em; }
+
+a {
+  color: #dd882e;
+  text-decoration: none;
+  -webkit-transition: color 0.1s linear;
+  -moz-transition: color 0.1s linear;
+  transition: color 0.1s linear; }
+  a:hover {
+    color: #a4611b; }
+  a:active, a:focus {
+    color: #a4611b;
+    outline: none; }
+
+hr {
+  border-bottom: 1px solid #6d6d70;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin: 1.40625em 0; }
+
+img {
+  margin: 0;
+  max-width: 100%; }
+
+abbr, acronym {
+  border-bottom: 1px dotted #6d6d70;
+  cursor: help; }
+
+address {
+  display: block;
+  margin: 0 0 0.70313em; }
+
+hgroup {
+  margin-bottom: 0.70313em; }
+
+del {
+  color: #7e7e81; }
+
+blockquote {
+  border-left: 2px solid #6d6d70;
+  color: #7e7e81;
+  margin: 1.40625em 0;
+  padding-left: 0.70313em; }
+
+cite {
+  color: #98989a;
+  font-style: italic; }
+  cite:before {
+    content: '\2014 \00A0'; }
+
+fieldset {
+  background: #86868a;
+  border: 1px solid #6d6d70;
+  margin: 0 0 0.70313em 0;
+  padding: 1.40625em; }
+
+input,
+label,
+select {
+  display: block;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9375em; }
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.35156em; }
+  label.required:after {
+    content: "*"; }
+  label abbr {
+    display: none; }
+
+textarea,
+input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"], input:not([type]), textarea,
+select[multiple=multiple] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: border-color;
+  -moz-transition: border-color;
+  transition: border-color;
+  background-color: white;
+  border-radius: 0.1875em;
+  border: 1px solid #6d6d70;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.9375em;
+  margin-bottom: 0.70313em;
+  padding: 0.46875em 0.46875em;
+  width: 100%; }
+  textarea:hover,
+  input[type="color"]:hover, input[type="date"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="email"]:hover, input[type="month"]:hover, input[type="number"]:hover, input[type="password"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="text"]:hover, input[type="time"]:hover, input[type="url"]:hover, input[type="week"]:hover, input:not([type]):hover, textarea:hover,
+  select[multiple=multiple]:hover {
+    border-color: #545456; }
+  textarea:focus,
+  input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="week"]:focus, input:not([type]):focus, textarea:focus,
+  select[multiple=multiple]:focus {
+    border-color: #dd882e;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(208, 123, 34, 0.7);
+    outline: none; }
+
+textarea {
+  resize: vertical; }
+
+input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none; }
+
+input[type="checkbox"], input[type="radio"] {
+  display: inline;
+  margin-right: 0.35156em; }
+
+input[type="file"] {
+  width: 100%; }
+
+select {
+  width: auto;
+  max-width: 100%;
+  margin-bottom: 1.40625em; }
+
+button,
+input[type="submit"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap; }
+
+table {
+  border-collapse: collapse;
+  margin: 0.70313em 0;
+  table-layout: fixed;
+  width: 100%; }
+
+th {
+  border-bottom: 1px solid #474749;
+  font-weight: bold;
+  padding: 0.70313em 0;
+  text-align: left; }
+
+td {
+  border-bottom: 1px solid #6d6d70;
+  padding: 0.70313em 0; }
+
+tr, td, th {
+  vertical-align: middle; }
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+dl {
+  line-height: 1.40625em;
+  margin-bottom: 0.70313em; }
+  dl dt {
+    font-weight: bold;
+    margin-top: 0.70313em; }
+  dl dd {
+    margin: 0; }
+
+/******************************************************************
+Site Name: RBA
+Author: SYP Dev
+
+Stylesheet: RBA Mobile first custom styling
+
+******************************************************************/
+/*
+BREAKPOINTS
+*/
+/*********************
+HEADER STYLES
+*********************/
+.header {
+  background: rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 3; }
+  @media screen and (min-width: 1200px) {
+    .header {
+      border-bottom: 25px rgba(255, 255, 255, 0.9) solid; } }
+
+#logo {
+  margin: 0.75em 0;
+  text-transform: uppercase;
+  font-size: 20px; }
+  #logo a {
+    color: #fff; }
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    #logo {
+      font-size: 24px; } }
+  @media screen and (min-width: 1200px) {
+    #logo {
+      margin: 0.75em 0 .25em 0; } }
+
+/*********************
+NAVIGATION STYLES
+*********************/
+/*
+all navs have a .nav class applied via
+the wp_menu function; this is so we can
+easily write one group of styles for
+the navs on the site so our css is cleaner
+and more scalable.
+*/
+nav .menu-toggle {
+  font-size: 2em;
+  color: #dd882e;
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer; }
+@media screen and (min-width: 1200px) {
+  nav .menu-toggle {
+    display: none; } }
+
+.nav {
+  border-bottom: 0;
+  margin: 0 -20px;
+  position: absolute;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: none;
+  padding-top: 10px;
+  /* end .menu li */
+  /* highlight current page */
+  /* end current highlighters */ }
+  .nav.active {
+    display: block; }
+  .nav li {
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    /*
+    so you really have to rethink your dropdowns for mobile.
+    you don't want to have it expand too much because the
+    screen is so small. How you manage your menu should
+    depend on the project. Here's some great info on it:
+    http://www.alistapart.com/articles/organizing-mobile/
+    */ }
+    .nav li a {
+      color: #58585a;
+      display: block;
+      text-decoration: none;
+      /*
+      remember this is for mobile ONLY, so there's no need
+      to even declare hover styles here, you can do it in
+      the style.scss file where it's relevant. We want to
+      keep this file as small as possible!
+      */ }
+    .nav li ul.sub-menu li,
+    .nav li ul.children li {
+      text-transform: none;
+      margin-bottom: 0; }
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    .nav {
+      width: auto;
+      right: 0;
+      padding: 20px;
+      margin: 0 20px 0 0; }
+      .nav li {
+        text-align: left; } }
+  @media screen and (min-width: 1200px) {
+    .nav {
+      position: relative;
+      display: block;
+      background: none;
+      margin: 0;
+      padding: 0; }
+      .nav li {
+        text-align: left;
+        float: left;
+        text-transform: none;
+        margin: 0; }
+        .nav li a {
+          color: #fff;
+          padding: .5em .75em; }
+        .nav li:first-child a {
+          padding-left: 0; }
+        .nav li ul.sub-menu, .nav li ul.children {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          display: none; }
+          .nav li ul.sub-menu li a, .nav li ul.children li a {
+            color: #6d6d70;
+            padding-top: 2px;
+            padding-bottom: 0; }
+        .nav li.active:after {
+          content: "";
+          position: absolute;
+          bottom: 0px;
+          margin-left: 8px;
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid rgba(255, 255, 255, 0.9); }
+        .nav li.active ul.sub-menu, .nav li.active ul.children {
+          display: block; } }
+
+/* end .nav */
+/*
+WRAP
+*/
+.wrap {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px; }
+  @media screen and (min-width: 1200px) {
+    .wrap {
+      padding: 0; } }
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+#content {
+  margin-top: 1.5em; }
+
+.hentry {
+  background-color: #fff;
+  margin-bottom: 1.5em;
+  position: relative; }
+  .hentry header {
+    padding: 0; }
+  .hentry footer {
+    padding: 0; }
+    .hentry footer p {
+      margin: 0; }
+  .archive .hentry footer {
+    border-top: 1px solid #DDD; }
+
+/* end .hentry */
+.single-title,
+.page-title,
+.entry-title {
+  margin: 0;
+  color: #dd882e;
+  text-transform: uppercase;
+  font-weight: normal; }
+
+/* want to style individual post classes? Booya! */
+/* post by id (i.e. post-3) */
+/* general post style */
+/* general article on a page style */
+/* general style on an attatchment */
+/* sticky post style */
+/* hentry class */
+/* style by category (i.e. category-videos) */
+/* style by tag (i.e. tag-news) */
+/* post meta */
+.byline {
+  color: #9fa6b4;
+  font-style: italic;
+  margin: 0; }
+
+/* entry content */
+.entry-content {
+  padding: 0;
+  /*
+  image alignment on a screen this size may be
+  a bit difficult. It's set to start aligning
+  and floating images at the next breakpoint,
+  but it's up to you. Feel free to change it up.
+  */ }
+  .entry-content p {
+    margin: 0 0 1.5em; }
+  .entry-content table {
+    width: 100%;
+    border: 1px solid #6d6d70;
+    margin-bottom: 1.5em; }
+    .entry-content table caption {
+      margin: 0 0 7px;
+      font-size: 0.75em;
+      color: #9fa6b4;
+      text-transform: uppercase;
+      letter-spacing: 1px; }
+  .entry-content tr {
+    border-bottom: 1px solid #6d6d70; }
+    .entry-content tr:nth-child(even) {
+      background-color: #DDD; }
+  .entry-content td {
+    padding: 7px;
+    border-right: 1px solid #6d6d70; }
+    .entry-content td:last-child {
+      border-right: 0; }
+  .entry-content th {
+    background-color: #DDD;
+    border-bottom: 1px solid #6d6d70;
+    border-right: 1px solid #6d6d70; }
+    .entry-content th:last-child {
+      border-right: 0; }
+  .entry-content blockquote {
+    margin: 0 0 1.5em 0.75em;
+    padding: 0 0 0 0.75em;
+    border-left: 3px solid #477DCA;
+    font-style: italic;
+    color: #9fa6b4; }
+  .entry-content dd {
+    margin-left: 0;
+    font-size: 0.9em;
+    color: #787878;
+    margin-bottom: 1.5em; }
+  .entry-content img {
+    margin: 0 0 0 0;
+    max-width: 100%;
+    height: auto; }
+  .entry-content .size-auto,
+  .entry-content .size-full,
+  .entry-content .size-large,
+  .entry-content .size-medium,
+  .entry-content .size-thumbnail {
+    max-width: 100%;
+    height: auto; }
+  .entry-content pre {
+    background: #323944;
+    color: #DDD;
+    font-size: 0.9em;
+    padding: 1.5em;
+    margin: 0 0 1.5em;
+    border-radius: 3px; }
+
+/* end .entry-content */
+.wp-caption {
+  max-width: 100%;
+  background: #eee;
+  padding: 5px;
+  /* images inside wp-caption */ }
+  .wp-caption img {
+    max-width: 100%;
+    margin-bottom: 0;
+    width: 100%; }
+  .wp-caption p.wp-caption-text {
+    font-size: 0.85em;
+    margin: 4px 0 7px;
+    text-align: center; }
+
+/* end .wp-caption */
+/* image gallery styles */
+/* end .gallery */
+/* gallery caption styles */
+.size-full {
+  width: 100%; }
+
+.tags {
+  margin: 0; }
+
+.column-list.cols-2 {
+  column-count: 2;
+  -webkit-column-count: 2;
+  -moz-column-count: 2; }
+.column-list.cols-3 {
+  column-count: 3;
+  -webkit-column-count: 3;
+  -moz-column-count: 3; }
+
+/* grid list styling */
+.grid-list {
+  list-style: none; }
+  .grid-list li {
+    margin-bottom: 20px;
+    position: relative; }
+    .grid-list li img {
+      width: 100%;
+      height: auto;
+      display: block; }
+    .grid-list li .title {
+      text-transform: uppercase;
+      font-weight: bold; }
+    .grid-list li a {
+      color: #58585a; }
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    .grid-list:not(.table-grid) li {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 48.82117%; }
+      .grid-list:not(.table-grid) li:last-child {
+        margin-right: 0; }
+      .grid-list:not(.table-grid) li:nth-child(2n) {
+        margin-right: 0; }
+    .grid-list.people-list, .grid-list.col-4 {
+      margin-top: 20px; }
+      .grid-list.people-list li, .grid-list.col-4 li {
+        float: left;
+        display: block;
+        margin-right: 2.35765%;
+        width: 23.23176%;
+        margin-bottom: 20px; }
+        .grid-list.people-list li:last-child, .grid-list.col-4 li:last-child {
+          margin-right: 0; }
+        .grid-list.people-list li:nth-child(4n), .grid-list.col-4 li:nth-child(4n) {
+          margin-right: 0; }
+    .grid-list.table-grid {
+      border-spacing: 18px;
+      border-collapse: separate;
+      margin: -18px; }
+      .grid-list.table-grid li {
+        display: table-cell;
+        width: 33.33333%; } }
+  @media screen and (min-width: 1200px) {
+    .grid-list:not(.table-grid) li {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 31.76157%; }
+      .grid-list:not(.table-grid) li:last-child {
+        margin-right: 0; }
+      .grid-list:not(.table-grid) li:nth-child(3n) {
+        margin-right: 0; } }
+
+/* single post styling - for news and research+advocacy */
+.single-post .hentry .entry-title {
+  font-size: 2.1em;
+  color: #58585a;
+  text-transform: none; }
+.single-post .hentry .post-categories {
+  text-transform: uppercase; }
+.single-post .hentry .byline {
+  color: #58585a; }
+  .single-post .hentry .byline .entry-author {
+    font-style: normal; }
+.single-post .hentry .entry-content {
+  margin-top: 20px; }
+  .single-post .hentry .entry-content .wp-post-image {
+    margin-bottom: 20px; }
+.single-post .hentry .article-footer {
+  border-top: none;
+  border-bottom: 1px #DDD solid;
+  padding-bottom: 4px; }
+
+/* full width page styling */
+/*
+.page-template-page-fullwidth {
+  background-color: $gray;
+  color: $white;
+  .hentry {
+    .article-header {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  .hentry.contact {
+    background-color: $gray;
+    .article-header {
+      position: relative;
+      z-index: 2;
+    }
+    .rba-map {
+      position: absolute;
+      width: 100%;
+      top: -130px;
+    }
+    .rba-location {
+      max-width: 1200px;
+      margin: 340px auto 0 auto;
+    }
+  }
+}
+*/
+.page-contact {
+  background-color: #6d6d70;
+  color: #fff; }
+  .page-contact #content .wrap {
+    max-width: 100%; }
+  .page-contact #content .hentry {
+    background-color: #6d6d70; }
+    .page-contact #content .hentry .article-header {
+      position: relative;
+      z-index: 2; }
+    .page-contact #content .hentry .rba-map {
+      position: absolute;
+      width: 100%;
+      top: -130px; }
+    .page-contact #content .hentry .rba-location {
+      max-width: 1200px;
+      margin: 340px auto 0 auto; }
+
+/* news list section styling */
+.category-news .entry-title {
+  text-transform: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px; }
+.category-news img {
+  display: inline-block;
+  margin-bottom: 20px; }
+
+/* team/people styles */
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .type-people .entry-content .image {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%; }
+    .type-people .entry-content .image:last-child {
+      margin-right: 0; }
+  .type-people .entry-content .bio {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 74.41059%; }
+    .type-people .entry-content .bio:last-child {
+      margin-right: 0; } }
+
+/* research + advocacy */
+.research-list .grid-list li a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff; }
+  .research-list .grid-list li a:hover {
+    background: rgba(0, 0, 0, 0.6); }
+  .research-list .grid-list li a .title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff; }
+
+.flexslider {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border: none;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0; }
+  .flexslider ul.slides {
+    padding: 0;
+    margin: 0; }
+    .flexslider ul.slides li .slider-image {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover; }
+    .flexslider ul.slides li img {
+      height: auto; }
+    .flexslider ul.slides li .credits {
+      position: absolute;
+      padding: 0 calc((100% - 1200px) / 2);
+      bottom: 40px;
+      left: 0;
+      color: #fff;
+      font-style: italic; }
+    .flexslider ul.slides li .slider-caption {
+      position: absolute;
+      bottom: 0;
+      padding: 10px 100px;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%; }
+      .flexslider ul.slides li .slider-caption a {
+        color: #fff; }
+      .flexslider ul.slides li .slider-caption span {
+        display: inline-block; }
+      .flexslider ul.slides li .slider-caption .title {
+        font-weight: bold;
+        text-transform: uppercase; }
+      .flexslider ul.slides li .slider-caption .caption {
+        margin-left: 10px; }
+  .flexslider .flex-direction-nav a {
+    opacity: 1;
+    text-shadow: none;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%; }
+    .flexslider .flex-direction-nav a:before {
+      font-family: FontAwesome;
+      margin-top: 5px;
+      color: #fff;
+      text-align: center;
+      display: block;
+      line-height: 28px; }
+    .flexslider .flex-direction-nav a.flex-prev {
+      left: 20px; }
+      .flexslider .flex-direction-nav a.flex-prev:before {
+        content: "\f104";
+        margin-right: 5px; }
+    .flexslider .flex-direction-nav a.flex-next {
+      right: 20px; }
+      .flexslider .flex-direction-nav a.flex-next:before {
+        content: "\f105";
+        margin-left: 5px; }
+
+/* projects landing styles */
+.projects-list .category-list {
+  margin-bottom: 20px; }
+  .projects-list .category-list::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .projects-list .category-list li {
+    float: left;
+    min-width: 80px;
+    padding: 0 0 5px 0;
+    margin: 0 20px 0 0;
+    border-bottom: 1px #DDD solid; }
+    .projects-list .category-list li.active, .projects-list .category-list li:hover {
+      border-bottom: 4px #dd882e solid; }
+    .post-type-archive-projects .projects-list .category-list li.all {
+      border-bottom: 4px #dd882e solid; }
+
+.single-projects article.hentry {
+  z-index: 2;
+  background: none; }
+  .single-projects article.hentry header .entry-title {
+    color: #fff;
+    font-size: 2em;
+    font-weight: bold; }
+    .single-projects article.hentry header .entry-title:before {
+      content: "+";
+      background-color: #dd882e;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      text-align: center;
+      line-height: 31px;
+      margin-right: 10px;
+      cursor: pointer;
+      vertical-align: top; }
+    .single-projects article.hentry header .entry-title.active:before {
+      content: "\2212";
+      line-height: 28px;
+      font-size: 25px; }
+  .single-projects article.hentry .entry-content {
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    width: 60%;
+    padding: 2em;
+    height: 480px;
+    overflow: scroll;
+    display: none; }
+    .single-projects article.hentry .entry-content.active {
+      display: block; }
+@media screen and (min-width: 1200px) {
+  .single-projects .header {
+    background: none; } }
+
+/* home page styling */
+.home {
+  background: none; }
+  .home #content .wrap {
+    max-width: 100%; }
+  .home .page {
+    position: static; }
+    .home .page header {
+      display: none; }
+    .home .page .news-banner {
+      position: relative;
+      z-index: 10;
+      background: rgba(221, 136, 46, 0.7);
+      color: #fff;
+      padding: 10px 100px;
+      width: 100%; }
+      .home .page .news-banner p {
+        margin: 0; }
+      .home .page .news-banner a {
+        color: #fff;
+        font-weight: bold; }
+    .home .page .close {
+      position: absolute;
+      right: 100px;
+      top: 10px;
+      cursor: pointer; }
+
+/* publications */
+.publications-list .publication-year {
+  color: #dd882e;
+  border-bottom: 1px #6d6d70 solid;
+  padding-bottom: 10px;
+  margin: 2em 0 1em 0;
+  font-weight: bold; }
+.publications-list .publication-item {
+  margin-bottom: 20px; }
+  .publications-list .publication-item::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .publications-list .publication-item .col-1 {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%; }
+    .publications-list .publication-item .col-1:last-child {
+      margin-right: 0; }
+  .publications-list .publication-item .col-2 {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%;
+    margin-right: 0; }
+    .publications-list .publication-item .col-2:last-child {
+      margin-right: 0; }
+  .publications-list .publication-item .publication {
+    text-transform: uppercase; }
+  .publications-list .publication-item .pubtitle {
+    font-weight: bold; }
+
+/******************************************************************
+PAGE NAVI STYLES
+******************************************************************/
+.pagination,
+.wp-prev-next {
+  margin: 1.5em 0; }
+
+.pagination {
+  text-align: center; }
+  .pagination ul {
+    display: inline-block;
+    background-color: #fff;
+    white-space: nowrap;
+    padding: 0;
+    clear: both;
+    border-radius: 3px; }
+  .pagination li {
+    padding: 0;
+    margin: 0;
+    float: left;
+    display: inline;
+    overflow: hidden;
+    border-right: 1px solid #6d6d70; }
+  .pagination a, .pagination span {
+    margin: 0;
+    text-decoration: none;
+    padding: 0;
+    line-height: 1em;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0.75em;
+    min-width: 1em;
+    display: block;
+    color: #477DCA; }
+    .pagination a:hover, .pagination a:focus, .pagination span:hover, .pagination span:focus {
+      background-color: #477DCA;
+      color: #fff; }
+  .pagination .current {
+    cursor: default;
+    color: #6d6d70; }
+    .pagination .current:hover, .pagination .current:focus {
+      background-color: #fff;
+      color: #6d6d70; }
+
+/* end .bones_page_navi */
+/* fallback previous & next links */
+.wp-prev-next .prev-link {
+  float: left; }
+.wp-prev-next .next-link {
+  float: right; }
+
+/* end .wp-prev-next */
+/******************************************************************
+COMMENT STYLES
+******************************************************************/
+/* h3 comment title */
+#comments-title {
+  padding: 0.75em;
+  margin: 0;
+  border-top: 1px solid #DDD;
+  /* number of comments span */ }
+
+.commentlist {
+  margin: 0;
+  list-style-type: none; }
+
+.comment {
+  position: relative;
+  clear: both;
+  overflow: hidden;
+  padding: 1.5em;
+  border-bottom: 1px solid #DDD;
+  /* vcard */
+  /* end .commentlist .vcard */
+  /* end children */
+  /* general comment classes */ }
+  .comment .comment-author {
+    padding: 7px;
+    border: 0; }
+  .comment .vcard {
+    margin-left: 50px; }
+    .comment .vcard cite.fn {
+      font-weight: 700;
+      font-style: normal; }
+    .comment .vcard time {
+      display: block;
+      font-size: 0.9em;
+      font-style: italic; }
+      .comment .vcard time a {
+        color: #9fa6b4;
+        text-decoration: none; }
+        .comment .vcard time a:hover {
+          text-decoration: underline; }
+    .comment .vcard .avatar {
+      position: absolute;
+      left: 16px;
+      border-radius: 50%; }
+  .comment:last-child {
+    margin-bottom: 0; }
+  .comment .children {
+    margin: 0;
+    /* variations */
+    /* change number for different depth */ }
+  .comment[class*=depth-] {
+    margin-top: 1.1em; }
+  .comment.depth-1 {
+    margin-left: 0;
+    margin-top: 0; }
+  .comment:not(.depth-1) {
+    margin-top: 0;
+    margin-left: 7px;
+    padding: 7px; }
+  .comment.odd {
+    background-color: #fff; }
+  .comment.even {
+    background: #DDD; }
+
+/* comment meta */
+/* comment content */
+.comment_content p {
+  margin: 0.7335em 0 1.5em;
+  font-size: 1em;
+  line-height: 1.5em; }
+
+/* end .commentlist .comment_content */
+/* comment reply link */
+.comment-reply-link {
+  font-size: 0.9em;
+  float: right; }
+
+/* end .commentlist .comment-reply-link */
+/* edit comment link */
+.comment-edit-link {
+  font-style: italic;
+  margin: 0 7px;
+  text-decoration: none;
+  font-size: 0.9em; }
+
+/******************************************************************
+COMMENT FORM STYLES
+******************************************************************/
+.comment-respond {
+  padding: 1.5em;
+  border-top: 1px solid #DDD; }
+
+#reply-title {
+  margin: 0; }
+
+.logged-in-as {
+  color: #9fa6b4;
+  font-style: italic;
+  margin: 0; }
+  .logged-in-as a {
+    color: #6d6d70; }
+
+.comment-form-comment {
+  margin: 1.5em 0 0.75em; }
+
+.form-allowed-tags {
+  padding: 1.5em;
+  background-color: #DDD;
+  font-size: 0.9em; }
+
+/* comment submit button */
+#submit {
+  float: right;
+  font-size: 1em; }
+
+/* comment form title */
+#comment-form-title {
+  margin: 0 0 1.1em; }
+
+/* cancel comment reply link */
+/* logged in comments */
+/* allowed tags */
+#allowed_tags {
+  margin: 1.5em 10px 0.7335em 0; }
+
+/* no comments */
+.nocomments {
+  margin: 0 20px 1.1em; }
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+.widget ul li {
+  /* deep nesting */ }
+
+.no-widgets {
+  background-color: #fff;
+  padding: 1.5em;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-bottom: 1.5em; }
+
+/*********************
+FOOTER STYLES
+*********************/
+.footer {
+  clear: both;
+  background-color: #323944;
+  color: #DDD;
+  display: none; }
+
+/*
+if you checked out the link above:
+http://www.alistapart.com/articles/organizing-mobile/
+you'll want to style the footer nav
+a bit more in-depth. Remember to keep
+it simple because you'll have to
+override these styles for the desktop
+view.
+*/
+/* end .footer-links */
+
+/*# sourceMappingURL=style.css.map */

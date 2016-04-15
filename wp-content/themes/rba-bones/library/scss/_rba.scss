@@ -1,0 +1,1356 @@
+/******************************************************************
+Site Name: RBA
+Author: SYP Dev
+
+Stylesheet: RBA Mobile first custom styling
+
+******************************************************************/
+
+/*
+BREAKPOINTS
+*/
+$mobile: new-breakpoint(max-width 480px 4);
+$tablet: new-breakpoint(min-width 768px max-width 1200px 4);
+$desktop: new-breakpoint(min-width 1200px 4);
+
+
+
+/*********************
+HEADER STYLES
+*********************/
+
+.header {
+  background: rgba(0,0,0,.4);
+  //background-color: rgba(109,109,112,.6);
+  position: relative;
+  z-index: 3;
+
+  &.active {
+    //border-bottom-color: #fff;
+  }
+  @include media($desktop) {
+    border-bottom: 25px rgba(255,255,255,.9) solid;
+  }
+}
+
+#logo {
+  margin: 0.75em 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  a {
+    color: $white;
+  }
+  @include media($tablet) {
+    font-size: 24px;
+  }
+  @include media($desktop) {
+    margin: 0.75em 0 .25em 0;
+  }
+
+}
+
+/*********************
+NAVIGATION STYLES
+*********************/
+
+/*
+all navs have a .nav class applied via
+the wp_menu function; this is so we can
+easily write one group of styles for
+the navs on the site so our css is cleaner
+and more scalable.
+*/
+nav {
+  .menu-toggle {
+    //font-family: "FontAwesome";
+    //content: "\f0c9";
+    font-size: 2em;
+    color: $orange;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+  }
+  @include media($desktop) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+}
+
+.nav {
+  border-bottom: 0;
+  margin: 0 -20px;
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,.9);
+  display: none;
+  padding-top: 10px;
+  &.active {
+    display: block;
+  }
+  li {
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    a {
+      color: $text-gray;
+      display: block;
+      text-decoration: none;
+      /*
+      remember this is for mobile ONLY, so there's no need
+      to even declare hover styles here, you can do it in
+      the style.scss file where it's relevant. We want to
+      keep this file as small as possible!
+      */
+      &:hover, &:focus {
+
+      }
+    }
+
+    &:first-child {}
+
+    &:last-child {}
+
+    /*
+    so you really have to rethink your dropdowns for mobile.
+    you don't want to have it expand too much because the
+    screen is so small. How you manage your menu should
+    depend on the project. Here's some great info on it:
+    http://www.alistapart.com/articles/organizing-mobile/
+    */
+    ul.sub-menu,
+    ul.children {
+
+      li {
+        text-transform: none;
+        margin-bottom: 0;
+        a {
+
+
+          &:hover,
+          &:focus {}
+
+          &:link {}
+
+        }
+
+        &:first-child {}
+
+        &:last-child {}
+
+      }
+
+
+    }
+
+  } /* end .menu li */
+
+  /* highlight current page */
+  li.current-menu-item,
+  li.current_page_item,
+  li.current_page_ancestor {
+
+    a {}
+
+  }  /* end current highlighters */
+  @include media($tablet) {
+    width: auto;
+    right: 0;
+    padding: 20px;
+    margin: 0 20px 0 0;
+    li {
+      text-align: left;
+    }
+  }
+
+  @include media($desktop) {
+    position: relative;
+    display: block;
+    background: none;
+    margin: 0;
+    padding: 0;
+    li {
+      text-align: left;
+      float: left;
+      text-transform: none;
+      margin: 0;
+      a {
+        color: $white;
+        padding: .5em .75em;
+      }
+      &:first-child {
+        a {
+          padding-left: 0;
+        }
+      }
+      ul.sub-menu, ul.children {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        display: none;
+        li {
+          a {
+            color: $gray;
+            padding-top: 2px;
+            padding-bottom: 0;
+          }
+        }
+      }
+      &.current-menu-parent, &.current-menu-item {
+        ul.sub-menu, ul.children {
+          //display: block;
+        }
+      }
+      &.active {
+        &:after {
+          //font-family: FontAwesome;
+          content: "";
+          position: absolute;
+          bottom: 0px;
+          margin-left: 8px;
+          //color: $white;
+          //font-size: 20px;
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid rgba(255,255,255,.9);
+        }
+        ul.sub-menu, ul.children {
+          display: block;
+        }
+      }
+      &.current-menu-parent, &.current-menu-item.menu-item-has-children {
+
+      }
+    }
+
+
+  }
+
+} /* end .nav */
+
+
+/*
+WRAP
+*/
+.wrap {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  @include media($desktop) {
+    padding: 0;
+  }
+}
+
+
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+
+#content {
+  margin-top: 1.5em;
+}
+
+.hentry {
+  background-color: $white;
+  margin-bottom: 1.5em;
+  position: relative;
+  header {
+    padding: 0;
+  }
+
+  footer {
+    padding: 0;
+
+    p {
+      margin: 0;
+    }
+  }
+  .archive & {
+    footer {
+      border-top: 1px solid $light-gray;
+    }
+
+  }
+} /* end .hentry */
+
+.single-title,
+.page-title,
+.entry-title {
+  margin: 0;
+  color: $orange;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.single-title {}
+
+.page-title {
+
+}
+
+.entry-title {}
+
+.archive-title {}
+
+/* want to style individual post classes? Booya! */
+.post-id {}         /* post by id (i.e. post-3) */
+.post {}            /* general post style */
+.page {}            /* general article on a page style */
+.attachment {}      /* general style on an attatchment */
+.sticky {}          /* sticky post style */
+.hentry {}          /* hentry class */
+.category-slug {}   /* style by category (i.e. category-videos) */
+.tag-slug {}        /* style by tag (i.e. tag-news) */
+
+/* post meta */
+.byline {
+  color: $meta-gray;
+  font-style: italic;
+  margin: 0;
+
+  time {}
+}
+
+/* entry content */
+.entry-content {
+  padding: 0;
+
+  p {
+    margin: 0 0 1.5em;
+  }
+
+
+  ul, ol, table, dl {}
+
+  ul, ol {
+
+    li {}
+
+  }
+
+  ul {
+
+    li {}
+
+  }
+
+  ol {
+
+    li {}
+
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid $gray;
+    margin-bottom: 1.5em;
+
+    caption {
+      margin: 0 0 7px;
+      font-size: 0.75em;
+      color: $meta-gray;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  tr {
+    border-bottom: 1px solid $gray;
+
+    &:nth-child(even) {
+      background-color: $light-gray;
+    }
+  }
+
+  td {
+    padding: 7px;
+    border-right: 1px solid $gray;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  th {
+    background-color: $light-gray;
+    border-bottom: 1px solid $gray;
+    border-right: 1px solid $gray;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  blockquote {
+    margin: 0 0 1.5em 0.75em;
+    padding: 0 0 0 0.75em;
+    border-left: 3px solid $blue;
+    font-style: italic;
+    color: $meta-gray;
+
+    &:before {}
+
+  }
+
+  dl {}
+
+  dt {}
+
+  dd {
+    margin-left: 0;
+    font-size: 0.9em;
+    color: #787878;
+    margin-bottom: 1.5em;
+  }
+
+  img {
+    margin: 0 0 0 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /*
+  image alignment on a screen this size may be
+  a bit difficult. It's set to start aligning
+  and floating images at the next breakpoint,
+  but it's up to you. Feel free to change it up.
+  */
+  .alignleft, img.alignleft {}
+  .alignright, img.alignright {}
+  .aligncenter, img.aligncenter {}
+
+  .size-auto,
+  .size-full,
+  .size-large,
+  .size-medium,
+  .size-thumbnail {
+    max-width: 100%;
+    height: auto;
+  }
+
+  pre {
+    background: $black;
+    color: $light-gray;
+    font-size: 0.9em;
+    padding: 1.5em;
+    margin: 0 0 1.5em;
+    border-radius: 3px;
+  }
+
+} /* end .entry-content */
+
+.wp-caption {
+  max-width: 100%;
+  background: #eee;
+  padding: 5px;
+
+  /* images inside wp-caption */
+  img {
+    max-width: 100%;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  p.wp-caption-text {
+    font-size: 0.85em;
+    margin: 4px 0 7px;
+    text-align: center;
+  }
+
+} /* end .wp-caption */
+
+/* image gallery styles */
+.gallery {
+
+  dl {
+
+    a {}
+
+    img {}
+
+  }
+
+  dt {}
+
+  dd {}
+
+} /* end .gallery */
+
+/* gallery caption styles */
+.gallery-caption {}
+
+.size-full {
+  width: 100%;
+}
+.size-large {}
+.size-medium {}
+.size-thumbnail {}
+
+// the tag output
+.tags {
+  margin: 0;
+}
+
+.column-list {
+  &.cols-2 {
+    column-count: 2;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+  }
+  &.cols-3 {
+    column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+  }
+
+}
+
+/* grid list styling */
+.grid-list {
+  list-style: none;
+  li {
+    margin-bottom: 20px;
+    position: relative;
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .title {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    a {
+      color: $text-gray;
+    }
+  }
+  @include media($tablet) {
+    &:not(.table-grid) {
+      li {
+        @include span-columns(6 of 12);
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &.people-list, &.col-4 {
+      margin-top: 20px;
+      li {
+        @include span-columns(3 of 12);
+        margin-bottom: 20px;
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+      }
+    }
+    &.table-grid {
+      @include display-context(table) {
+        border-spacing: 18px;
+        border-collapse: separate;
+        margin: -18px;
+        li {
+          @include span-columns(4 of 12);
+        }
+      }
+
+    }
+  }
+  @include media($desktop) {
+    &:not(.table-grid) {
+      li {
+        @include span-columns(4 of 12);
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+/* single post styling - for news and research+advocacy */
+.single-post {
+  .hentry {
+    .entry-title {
+      font-size: 2.1em;
+      color: $text-gray;
+      text-transform: none;
+    }
+    .post-categories {
+      text-transform: uppercase;
+    }
+    .byline {
+      color: $text-gray;
+      .entry-author {
+        font-style: normal;
+      }
+    }
+    .entry-content {
+      margin-top: 20px;
+      .wp-post-image {
+        margin-bottom: 20px;
+      }
+    }
+    .article-footer {
+      border-top: none;
+      border-bottom: 1px $light-gray solid;
+      padding-bottom: 4px;
+    }
+
+  }
+}
+
+/* full width page styling */
+/*
+.page-template-page-fullwidth {
+  background-color: $gray;
+  color: $white;
+  .hentry {
+    .article-header {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+  .hentry.contact {
+    background-color: $gray;
+    .article-header {
+      position: relative;
+      z-index: 2;
+    }
+    .rba-map {
+      position: absolute;
+      width: 100%;
+      top: -130px;
+    }
+    .rba-location {
+      max-width: 1200px;
+      margin: 340px auto 0 auto;
+    }
+  }
+}
+*/
+
+// contact page styling
+.page-contact {
+  background-color: $gray;
+  color: $white;
+  #content {
+    .wrap {
+      max-width: 100%;
+    }
+    .hentry {
+      background-color: $gray;
+      .article-header {
+        position: relative;
+        z-index: 2;
+      }
+      .rba-map {
+        position: absolute;
+        width: 100%;
+        top: -130px;
+      }
+      .rba-location {
+        max-width: 1200px;
+        margin: 340px auto 0 auto;
+      }
+    }
+  }
+}
+
+/* news list section styling */
+.category-news {
+  .entry-title {
+    text-transform: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  img {
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+}
+
+
+/* team/people styles */
+.type-people {
+  .entry-content {
+    @include media($tablet) {
+      .image {
+        @include span-columns(3 of 12);
+      }
+      .bio {
+        @include span-columns(9 of 12);
+      }
+    }
+  }
+}
+
+/* research + advocacy */
+.research-list {
+  .grid-list {
+    li {
+      a {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0, 0.4);
+        color: $white;
+        &:hover {
+          background: rgba(0,0,0, 0.6);;
+        }
+        .title {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          color: $white;
+        }
+      }
+      img {
+
+      }
+    }
+  }
+}
+
+// flexslider styling
+.flexslider {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border: none;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  ul.slides {
+    padding: 0;
+    margin: 0;
+    li {
+      .slider-image {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+      img {
+        height: auto;
+      }
+      .credits {
+        position: absolute;
+        padding: 0 calc((100% - 1200px) / 2);
+        bottom: 40px;
+        left: 0;
+        color: $white;
+        font-style: italic;
+      }
+      .slider-caption {
+        position: absolute;
+        bottom: 0;
+        padding: 10px 100px;
+        background: rgba(0,0,0,.5);
+        width: 100%;
+        a {
+          color: $white;
+        }
+        span {
+          display: inline-block;
+        }
+        .title {
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .caption {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .flex-direction-nav {
+    a {
+      opacity: 1;
+      text-shadow: none;
+      background: rgba(0,0,0,.6);
+      border-radius: 50%;
+      &:before {
+        font-family: FontAwesome;
+        margin-top: 5px;
+        color: $white;
+        text-align: center;
+        display: block;
+        line-height: 28px;
+      }
+      &.flex-prev {
+        left: 20px;
+        &:before {
+          content: "\f104";
+          margin-right: 5px;
+        }
+      }
+      &.flex-next {
+        right: 20px;
+        &:before {
+          content: "\f105";
+          margin-left:5px;
+        }
+      }
+    }
+  }
+}
+
+/* projects landing styles */
+.projects-list {
+  .category-list {
+    @include clearfix;
+    margin-bottom: 20px;
+    li {
+      float: left;
+      min-width: 80px;
+      padding: 0 0 5px 0;
+      margin: 0 20px 0 0;
+      border-bottom: 1px $light-gray solid;
+      &.active, &:hover {
+        border-bottom: 4px $orange solid;
+      }
+      .post-type-archive-projects & {
+        &.all {
+          border-bottom: 4px $orange solid;
+        }
+      }
+    }
+  }
+}
+// single project page styling
+.single-projects {
+  .header {
+    //border-bottom: 25px rgba(255,255,255,.9) solid;
+    //border-bottom: 25px $white solid;
+    ul.nav li.active:after {
+      //color: rgba(255,255,255,.9);
+    }
+  }
+  article.hentry {
+    z-index: 2;
+    background:none;
+    header {
+      .entry-title {
+        color: $white;
+        font-size: 2em;
+        font-weight: bold;
+        &:before {
+          content: "+";
+          background-color: $orange;
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          display: inline-block;
+          text-align: center;
+          line-height: 31px;
+          margin-right: 10px;
+          cursor: pointer;
+          vertical-align:top;
+          &:hover {
+
+          }
+        }
+        &.active:before {
+          content: "\2212";
+          line-height: 28px;
+          font-size: 25px;
+        }
+      }
+    }
+    .entry-content {
+      background: rgba(0,0,0,.8);
+      color: $white;
+      width: 60%;
+      padding: 2em;
+      height: 480px;
+      overflow: scroll;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+  @include media($desktop) {
+    .header {
+      background: none;
+    }
+  }
+}
+
+/* home page styling */
+.home {
+  background: none;
+  #content {
+    .wrap {
+      max-width: 100%;
+    }
+  }
+  .page {
+    position: static;
+    header {
+      display: none;
+    }
+    .news-banner {
+      position: relative;
+      z-index: 10;
+      background: rgba(221,136,46,.7);
+      color: $white;
+      padding: 10px 100px;
+      width: 100%;
+      p {
+        margin: 0;
+      }
+      a {
+        color: $white;
+        font-weight: bold;
+      }
+    }
+    .flexslider {
+
+    }
+    .close {
+      position: absolute;
+      right: 100px;
+      top: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* publications */
+.publications-list {
+  .publication-year {
+    color: $orange;
+    border-bottom: 1px $gray solid;
+    padding-bottom: 10px;
+    margin: 2em 0 1em 0;
+    font-weight: bold;
+  }
+  .publication-item {
+    @include clearfix();
+    margin-bottom: 20px;
+    .col-1 {
+      @include span-columns(2);
+    }
+    .col-2 {
+      @include span-columns(10);
+      @include omega();
+    }
+    .publication {
+      text-transform: uppercase;
+    }
+    .pubtitle {
+      font-weight: bold;
+    }
+
+  }
+}
+
+
+/******************************************************************
+PAGE NAVI STYLES
+******************************************************************/
+
+.pagination,
+.wp-prev-next {
+  margin: 1.5em 0;
+}
+.pagination{
+  text-align: center;
+
+  ul {
+    display: inline-block;
+    background-color: $white;
+    white-space: nowrap;
+    padding: 0;
+    clear: both;
+    border-radius: 3px;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+    float: left;
+    display: inline;
+    overflow: hidden;
+    border-right: 1px solid $gray;
+  }
+
+  a, span {
+    margin: 0;
+    text-decoration: none;
+    padding: 0;
+    line-height: 1em;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0.75em;
+    min-width: 1em;
+    display: block;
+    color: $blue;
+
+    &:hover, &:focus {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  .current{
+    cursor: default;
+    color: $text-color;
+
+    &:hover, &:focus {
+      background-color: $white;
+      color: $text-color;
+    }
+  }
+
+} /* end .bones_page_navi */
+
+/* fallback previous & next links */
+.wp-prev-next {
+
+  ul {}
+
+  .prev-link {
+    float: left;
+  }
+
+  .next-link {
+    float: right;
+  }
+
+} /* end .wp-prev-next */
+
+/******************************************************************
+COMMENT STYLES
+******************************************************************/
+
+/* h3 comment title */
+#comments-title {
+  padding: 0.75em;
+  margin: 0;
+  border-top: 1px solid $light-gray;
+
+  /* number of comments span */
+  span {}
+
+}
+
+.comment-nav {
+
+  ul {
+
+    li {}
+
+  }
+}
+
+
+.commentlist {
+  margin: 0;
+  list-style-type: none;
+}
+
+.comment {
+  position: relative;
+  clear: both;
+  overflow: hidden;
+  padding: 1.5em;
+  border-bottom: 1px solid $light-gray;
+
+  .comment-author {
+    padding: 7px;
+    border: 0;
+  }
+
+  /* vcard */
+  .vcard {
+    margin-left: 50px;
+
+    cite.fn {
+      font-weight: 700;
+      font-style: normal;
+
+      a.url {}
+
+    }
+
+    time {
+      display: block;
+      font-size: 0.9em;
+      font-style: italic;
+
+      a {
+        color: $meta-gray;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+      }
+
+    }
+
+    .photo {}
+
+    .avatar {
+      position: absolute;
+      left: 16px;
+      border-radius: 50%;
+    }
+
+  } /* end .commentlist .vcard */
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .children {
+    margin: 0;
+
+    li {}
+
+    /* variations */
+    .comment {}
+    .alt {}
+    .odd {}
+    .even {}
+    .depth-1 {}           /* change number for different depth */
+    .byuser {}
+    .bypostauthor {}
+    .comment-author-admin {}
+
+  } /* end children */
+
+
+  &[class*=depth-] {
+    margin-top: 1.1em;
+  }
+
+  &.depth-1 {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  &:not(.depth-1) {
+    margin-top: 0;
+    margin-left: 7px;
+    padding: 7px;
+  }
+
+  &.depth-2 {}
+  &.depth-3 {}
+  &.depth-4 {}
+  &.depth-5 {}
+
+  /* general comment classes */
+  &.alt {}
+  &.odd {
+    background-color: $white;
+  }
+  &.even {
+    background: $light-gray;
+  }
+  &.parent {}
+  &.comment {}
+  &.children {}
+  &.pingback {}
+  &.bypostauthor {}
+  &.comment-author {}
+  &.comment-author-admin {}
+  &.thread-alt {}
+  &.thread-odd {}
+  &.thread-even {}
+}
+
+
+
+
+/* comment meta */
+.comment-meta {
+
+  a {}
+
+}
+
+.commentmetadata {
+
+  a {}
+
+}
+
+/* comment content */
+.comment_content {
+
+  p {
+    margin: 0.7335em 0 1.5em;
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+
+} /* end .commentlist .comment_content */
+
+/* comment reply link */
+.comment-reply-link {
+  font-size: 0.9em;
+  float: right;
+
+  &:hover,
+  &:focus {
+  }
+
+} /* end .commentlist .comment-reply-link */
+
+/* edit comment link */
+.comment-edit-link {
+  font-style: italic;
+  margin: 0 7px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+
+
+/******************************************************************
+COMMENT FORM STYLES
+******************************************************************/
+
+.comment-respond {
+  padding: 1.5em;
+  border-top: 1px solid $light-gray;
+}
+
+#reply-title {
+  margin: 0;
+}
+
+.logged-in-as {
+  color: $meta-gray;
+  font-style: italic;
+  margin: 0;
+
+  a {
+    color: $text-color;
+  }
+}
+
+.comment-form-comment {
+  margin: 1.5em 0 0.75em;
+}
+
+.form-allowed-tags {
+  padding: 1.5em;
+  background-color: $light-gray;
+  font-size: 0.9em;
+}
+
+/* comment submit button */
+#submit {
+  float: right;
+  font-size: 1em;
+}
+
+/* comment form title */
+#comment-form-title {
+  margin: 0 0 1.1em;
+}
+
+/* cancel comment reply link */
+#cancel-comment-reply {
+  a {}
+}
+
+/* logged in comments */
+.comments-logged-in-as {}
+
+/* allowed tags */
+#allowed_tags {
+  margin: 1.5em 10px 0.7335em 0;
+}
+
+/* no comments */
+.nocomments {
+  margin: 0 20px 1.1em;
+}
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+
+.sidebar {}
+
+.widgettitle {}
+
+.widget {
+
+  ul {
+
+    li {
+
+      &:first-child {}
+
+      &:last-child {}
+
+      a {}
+
+      /* deep nesting */
+      ul {}
+
+    }
+
+  }
+
+}
+
+.no-widgets {
+  background-color: $white;
+  padding: 1.5em;
+  text-align: center;
+  border: 1px solid $border-color;
+  border-radius: 2px;
+  margin-bottom: 1.5em;
+}
+
+/*********************
+FOOTER STYLES
+*********************/
+
+.footer {
+  clear: both;
+  background-color: $black;
+  color: $light-gray;
+  display: none;
+}
+
+/*
+if you checked out the link above:
+http://www.alistapart.com/articles/organizing-mobile/
+you'll want to style the footer nav
+a bit more in-depth. Remember to keep
+it simple because you'll have to
+override these styles for the desktop
+view.
+*/
+.footer-links {
+
+  ul {
+
+    li {}
+
+  }
+
+} /* end .footer-links */
+
+
+.copyright {}
